@@ -1,0 +1,51 @@
+姓名: 构建陌辞APK
+
+在……之上:
+workflow_dispatch:
+
+工作:
+建立:
+姓名: 编译陌辞
+连续的：Ubuntu-最新
+
+步骤:
+-姓名: 下载项目源码
+uses: 操作/结帐@v4
+
+-姓名: 设置Java17
+uses: 操作/设置-Java@v4
+和……一起:
+分布: temurin
+java版: '17'
+
+      - 姓名: 设置Android SDK
+uses: android-actions/setup-android@v3
+
+      - 姓名: 安装Gradle
+uses: Gradle/操作/设置-Gradle@v4
+和……一起:
+gradle-version: '8.9'
+
+      - 姓名: 检查项目结构
+跑: |
+回声"=====当前目录====="
+PWD
+回声"=====文件====="
+LS-la
+回声"=====app====="
+LS-la应用程序
+
+      - 姓名: 构建APK
+跑: |
+Gradle组件调试--stacktrace
+
+      - 姓名: 查找APK
+跑: |
+回声"=====安装包文件====="
+find. -键入f-name"*.apk"-print
+
+      - 姓名: 上传APK
+uses: 操作/上载工件@v4
+和……一起:
+姓名: MoCi-APK
+路径: app/build/outputs/apk/debug/app-debug.apk
